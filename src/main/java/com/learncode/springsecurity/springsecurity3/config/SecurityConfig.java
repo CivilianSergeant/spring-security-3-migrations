@@ -19,6 +19,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.learncode.springsecurity.springsecurity3.services.AuthenticateService;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -36,7 +38,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests().requestMatchers("/welcome").permitAll()
                 .and()
                 .authorizeHttpRequests().requestMatchers("/products/**").authenticated()
-                .and().formLogin().and().build();
+                .and().formLogin(withDefaults()).build();
     }
 
     @Bean
@@ -45,7 +47,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationProvider gAuthenticationProvider(){
+    public AuthenticationProvider getAuthenticationProvider(){
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService());
         authenticationProvider.setPasswordEncoder(passwordEncoder());
