@@ -1,6 +1,5 @@
 package com.learncode.springsecurity.springsecurity3;
 
-import com.learncode.springsecurity.springsecurity3.entity.User;
 import com.learncode.springsecurity.springsecurity3.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

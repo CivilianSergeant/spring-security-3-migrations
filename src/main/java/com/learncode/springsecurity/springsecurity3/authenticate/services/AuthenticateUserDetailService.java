@@ -1,21 +1,20 @@
-package com.learncode.springsecurity.springsecurity3.services;
+package com.learncode.springsecurity.springsecurity3.authenticate.services;
 
-import java.util.Optional;
-
+import com.learncode.springsecurity.springsecurity3.entity.LoginDetail;
+import com.learncode.springsecurity.springsecurity3.entity.User;
+import com.learncode.springsecurity.springsecurity3.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.learncode.springsecurity.springsecurity3.entity.LoginDetail;
-import com.learncode.springsecurity.springsecurity3.entity.User;
-import com.learncode.springsecurity.springsecurity3.repositories.UserRepository;
+import java.util.Optional;
 
-public class AuthenticateService implements UserDetailsService{
+public class AuthenticateUserDetailService implements UserDetailsService{
 
     @Autowired
-    private UserRepository userRepository;    
+    private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -25,6 +24,8 @@ public class AuthenticateService implements UserDetailsService{
                 .orElseThrow(() -> new UsernameNotFoundException(username + " User not found"));
         return ld;
     }
+
+
 
     
 }
